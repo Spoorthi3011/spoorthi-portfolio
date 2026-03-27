@@ -118,6 +118,7 @@
     padding-top: 8rem;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
   }
 
   .hero-tag {
@@ -752,10 +753,6 @@
     display: block;
   }
 
-  #hero {
-    position: relative;
-  }
-
   @media (max-width: 900px) {
     .hero-photo-wrap { display: none; }
   }
@@ -772,6 +769,7 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#publications">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -1124,7 +1122,7 @@
       I am currently open to <strong style="color:var(--white)">AI/ML internships</strong>, <strong style="color:var(--white)">data analyst roles</strong>, <strong style="color:var(--white)">AI evaluation contracts</strong>, and <strong style="color:var(--white)">research collaborations</strong> — remote or hybrid across the UK.
     </p>
     <div class="contact-links">
-      <a href="mailto:spoorthijsuk@gmail.com" class="contact-link">✉ spoorthijsuk@gmail.com </a>
+      <a href="mailto:spoorthijsuk@gmail.com" class="contact-link">✉ spoorthijsuk@gmail.com</a>
       <a href="https://github.com/Spoorthi3011" target="_blank" class="contact-link">⌥ github.com/Spoorthi3011</a>
       <a href="https://linkedin.com/in/spoorthi-jolakula-suresh-646b3a226" target="_blank" class="contact-link">in LinkedIn</a>
       <a href="tel:+447810768009" class="contact-link">📞 +44 7810 768009</a>
@@ -1155,12 +1153,16 @@
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) {
+        current = sec.getAttribute('id');
+      }
     });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--accent)' : '';
+    navLinks.forEach(link => {
+      link.style.color = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--accent)';
+      }
     });
   });
 </script>
