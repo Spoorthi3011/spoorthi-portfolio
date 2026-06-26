@@ -22,7 +22,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -34,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* ── BACKGROUND MESH ── */
   body::before {
     content: '';
     position: fixed;
@@ -47,7 +45,6 @@
     z-index: 0;
   }
 
-  /* Grid overlay */
   body::after {
     content: '';
     position: fixed;
@@ -162,10 +159,7 @@
     animation: fadeUp 0.8s 0.1s ease both;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
+  h1 em { font-style: italic; color: var(--accent); }
 
   .hero-sub {
     font-size: clamp(1rem, 2vw, 1.25rem);
@@ -184,10 +178,7 @@
     flex-wrap: wrap;
   }
 
-  .stat {
-    display: flex;
-    flex-direction: column;
-  }
+  .stat { display: flex; flex-direction: column; }
 
   .stat-num {
     font-family: 'DM Serif Display', serif;
@@ -196,9 +187,7 @@
     line-height: 1;
   }
 
-  .stat-num span {
-    color: var(--accent);
-  }
+  .stat-num span { color: var(--accent); }
 
   .stat-label {
     font-size: 0.8rem;
@@ -277,12 +266,8 @@
     line-height: 1.15;
   }
 
-  h2 em {
-    color: var(--accent);
-    font-style: italic;
-  }
+  h2 em { color: var(--accent); font-style: italic; }
 
-  /* ── DIVIDER ── */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--card-border), transparent);
@@ -307,16 +292,9 @@
     line-height: 1.8;
   }
 
-  .about-text p strong {
-    color: var(--white);
-    font-weight: 600;
-  }
+  .about-text p strong { color: var(--white); font-weight: 600; }
 
-  .interests-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+  .interests-grid { display: flex; flex-direction: column; gap: 0.75rem; }
 
   .interest-tag {
     display: flex;
@@ -337,17 +315,10 @@
     color: var(--white);
   }
 
-  .interest-icon {
-    font-size: 1.1rem;
-    width: 28px;
-    text-align: center;
-  }
+  .interest-icon { font-size: 1.1rem; width: 28px; text-align: center; }
 
   /* ── EXPERIENCE TIMELINE ── */
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
+  .timeline { position: relative; padding-left: 2rem; }
 
   .timeline::before {
     content: '';
@@ -357,11 +328,7 @@
     background: linear-gradient(to bottom, var(--accent), transparent);
   }
 
-  .timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-    padding-left: 2rem;
-  }
+  .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
 
   .timeline-item::before {
     content: '';
@@ -375,12 +342,33 @@
     transform: translateX(-4px);
   }
 
+  .timeline-item.current::before {
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+  }
+
   .timeline-date {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     color: var(--accent);
     letter-spacing: 0.08em;
     margin-bottom: 0.4rem;
+  }
+
+  .timeline-item.current .timeline-date { color: var(--gold); }
+
+  .timeline-badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    background: rgba(240,192,96,0.12);
+    border: 1px solid rgba(240,192,96,0.3);
+    border-radius: 100px;
+    font-size: 0.68rem;
+    color: var(--gold);
+    margin-left: 0.6rem;
+    vertical-align: middle;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
   }
 
   .timeline-title {
@@ -404,12 +392,7 @@
     line-height: 1.7;
   }
 
-  .timeline-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.8rem;
-  }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
 
   .tag {
     padding: 0.25rem 0.7rem;
@@ -422,6 +405,33 @@
   }
 
   /* ── PROJECTS GRID ── */
+  .projects-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--muted);
+    transition: all 0.15s;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: rgba(77,184,255,0.12);
+    border-color: rgba(77,184,255,0.3);
+    color: var(--accent);
+  }
+
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -455,10 +465,15 @@
 
   .project-card:hover::before { opacity: 1; }
 
-  .project-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
+  .project-card[data-category="analytics"] { border-top: 2px solid rgba(77,184,255,0.4); }
+  .project-card[data-category="cv"] { border-top: 2px solid rgba(100,200,100,0.4); }
+  .project-card[data-category="nlp"] { border-top: 2px solid rgba(255,160,80,0.4); }
+  .project-card[data-category="ml"] { border-top: 2px solid rgba(200,100,255,0.4); }
+  .project-card[data-category="research"] { border-top: 2px solid rgba(240,192,96,0.4); }
+
+  .project-card.hidden { display: none; }
+
+  .project-icon { font-size: 2rem; margin-bottom: 1rem; }
 
   .project-title {
     font-family: 'DM Serif Display', serif;
@@ -478,17 +493,13 @@
 
   .project-metric {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--gold);
     margin-bottom: 1rem;
   }
 
   /* ── PUBLICATIONS ── */
-  .pub-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
+  .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
 
   .pub-card {
     display: grid;
@@ -608,11 +619,7 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  .skill-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
+  .skill-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
   .chip {
     padding: 0.3rem 0.7rem;
@@ -631,9 +638,7 @@
   }
 
   /* ── CONTACT ── */
-  #contact {
-    text-align: center;
-  }
+  #contact { text-align: center; }
 
   .contact-card {
     max-width: 600px;
@@ -684,7 +689,6 @@
     transform: translateY(-2px);
   }
 
-  /* ── FOOTER ── */
   footer {
     position: relative;
     z-index: 1;
@@ -695,19 +699,14 @@
     color: var(--muted);
   }
 
-  /* ── SCROLL ANIMATIONS ── */
   .reveal {
     opacity: 0;
     transform: translateY(32px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal.visible { opacity: 1; transform: none; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.5rem; }
@@ -715,48 +714,6 @@
     .hero-stats { gap: 2rem; }
     .contact-card { padding: 2rem 1.5rem; }
   }
-
-  /* ── PHOTO ── */
-  .hero-photo-wrap {
-    position: absolute;
-    right: 0; top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    animation: fadeUp 1s 0.5s ease both;
-  }
-
-  .hero-photo-ring {
-    width: 300px; height: 340px;
-    border-radius: 180px 180px 140px 140px;
-    border: 2px solid rgba(77,184,255,0.3);
-    padding: 6px;
-    background: linear-gradient(160deg, rgba(77,184,255,0.12), rgba(13,31,60,0.4));
-    box-shadow: 0 0 60px rgba(77,184,255,0.15), 0 30px 60px rgba(0,0,0,0.4);
-    position: relative;
-  }
-
-  .hero-photo-ring::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: linear-gradient(160deg, rgba(77,184,255,0.4), transparent 60%);
-    z-index: -1;
-  }
-
-  .hero-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 175px 175px 135px 135px;
-    display: block;
-  }
-
-  @media (max-width: 900px) {
-    .hero-photo-wrap { display: none; }
-  }
-
 </style>
 </head>
 <body>
@@ -776,9 +733,9 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">Available for opportunities · Liverpool, UK</div>
+  <div class="hero-tag">Currently at GoodSpot · Liverpool, UK</div>
   <h1>Spoorthi<br>Jolakula <em>Suresh</em></h1>
-  <p class="hero-sub">AI & Machine Learning Researcher — MSc Advanced Data Science & AI, University of Liverpool. Building models that work in the real world, from healthcare diagnostics to NLP systems.</p>
+  <p class="hero-sub">AI & ML Engineer — MSc Advanced Data Science & AI, University of Liverpool. Building models that work in the real world, from healthcare diagnostics to autonomous AI agents and data analytics platforms.</p>
 
   <div class="hero-stats">
     <div class="stat">
@@ -790,12 +747,12 @@
       <span class="stat-label">Filed<br>Patents</span>
     </div>
     <div class="stat">
-      <span class="stat-num">2<span>+</span></span>
+      <span class="stat-num">3<span>+</span></span>
       <span class="stat-label">Industry<br>Internships</span>
     </div>
     <div class="stat">
-      <span class="stat-num">8<span>+</span></span>
-      <span class="stat-label">ML<br>Projects</span>
+      <span class="stat-num">12<span>+</span></span>
+      <span class="stat-label">ML & Data<br>Projects</span>
     </div>
   </div>
 
@@ -815,10 +772,10 @@
 
   <div class="about-grid">
     <div class="about-text">
-      <p>I am an AI & ML researcher with a passion for applying machine learning to <strong>high-stakes real-world problems</strong> — particularly in healthcare, biomedical research, and applied data science.</p>
-      <p>Currently completing my <strong>MSc in Advanced Data Science & Artificial Intelligence</strong> at the University of Liverpool, I bring hands-on experience from two industry internships, 4 peer-reviewed publications, and 5 filed patents spanning healthcare AI, computer vision, and NLP.</p>
-      <p>I am equally comfortable working <strong>independently on research-driven projects</strong> and collaborating with cross-functional teams to deliver data-driven insights to non-technical stakeholders.</p>
-      <p>I am currently open to <strong>AI/ML internships, data analyst roles, research collaborations, and contract evaluation work</strong> — remote or hybrid across the UK.</p>
+      <p>I am an AI & ML engineer with a passion for applying machine learning to <strong>high-stakes real-world problems</strong> — spanning healthcare AI, computer vision, NLP, data analytics, and autonomous agentic systems.</p>
+      <p>Currently completing my <strong>MSc in Advanced Data Science & Artificial Intelligence</strong> at the University of Liverpool, while gaining industry experience as an <strong>AI/ML Intern at GoodSpot</strong>. I bring hands-on experience from three industry positions, 4 peer-reviewed publications, and 5 filed patents.</p>
+      <p>I am equally comfortable working <strong>independently on research-driven projects</strong> and collaborating with cross-functional teams — from building production ML pipelines to designing Power BI dashboards that translate data into decisions.</p>
+      <p>Open to <strong>AI/ML engineering roles, data analyst positions, research collaborations, and graduate programmes</strong> — remote or hybrid across the UK.</p>
     </div>
 
     <div class="interests-grid reveal">
@@ -827,7 +784,7 @@
       <div class="interest-tag"><span class="interest-icon">💬</span> Natural Language Processing</div>
       <div class="interest-tag"><span class="interest-icon">👁</span> Computer Vision</div>
       <div class="interest-tag"><span class="interest-icon">🔍</span> Explainable AI (XAI)</div>
-      <div class="interest-tag"><span class="interest-icon">📊</span> Data Analytics & Visualisation</div>
+      <div class="interest-tag"><span class="interest-icon">📊</span> Data Analytics & BI Dashboards</div>
       <div class="interest-tag"><span class="interest-icon">🤖</span> Agentic AI & LLMs</div>
       <div class="interest-tag"><span class="interest-icon">🌱</span> Social Impact through AI</div>
     </div>
@@ -842,27 +799,54 @@
   <h2>Where I've <em>worked</em></h2>
 
   <div class="timeline">
+
+    <!-- GOODSPOT — CURRENT -->
+    <div class="timeline-item current reveal">
+      <div class="timeline-date">JUN 2026 — PRESENT <span class="timeline-badge">● CURRENT</span></div>
+      <div class="timeline-title">AI/ML Intern</div>
+      <div class="timeline-company">GoodSpot · Liverpool, UK</div>
+      <div class="timeline-desc">Shadowing AI engineers across end-to-end machine learning development workflows — gaining practical exposure to how production ML systems are designed, built, tested, and deployed commercially. Assisting with data preparation, model testing, and performance analysis for live AI projects. Supporting validation of model outputs and documenting experimental results using version control and collaborative engineering best practices.</div>
+      <div class="timeline-tags">
+        <span class="tag">Python</span><span class="tag">ML Pipelines</span><span class="tag">Model Testing</span>
+        <span class="tag">Data Preparation</span><span class="tag">Git</span><span class="tag">Documentation</span>
+      </div>
+    </div>
+
+    <!-- VIT -->
     <div class="timeline-item reveal">
       <div class="timeline-date">JUN 2024 — NOV 2024</div>
       <div class="timeline-title">Machine Learning Research Intern</div>
       <div class="timeline-company">VIT Chennai · Computer Vision & Applied AI · India</div>
-      <div class="timeline-desc">Led an independent end-to-end ML research project (AquaVision Dehaze) — designing the experiment, building reproducible Python pipelines, conducting systematic ablation studies, and evaluating results with quantitative metrics (PSNR, SSIM). Published peer-reviewed findings at IET CVIoT 2024 and produced technical documentation for internal and external dissemination. Worked independently across the full project lifecycle with minimal supervision.</div>
+      <div class="timeline-desc">Led end-to-end ML research projects — designing experiments, building reproducible Python pipelines, conducting systematic ablation studies, and evaluating results with quantitative metrics (PSNR, SSIM, F1, AUC). Benchmarked YOLOv8 vs YOLOv9 architectures for underwater object detection. Deployed a fully autonomous multimodal AI agent (AI-Chemist) in a live laboratory environment. Published peer-reviewed findings at IET CVIoT 2024 and Springer CVIP 2024.</div>
       <div class="timeline-tags">
-        <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">CNNs</span>
-        <span class="tag">Image Processing</span><span class="tag">Git</span><span class="tag">Research</span>
+        <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span>
+        <span class="tag">CNNs</span><span class="tag">YOLO</span><span class="tag">VLMs</span><span class="tag">Research</span>
       </div>
     </div>
 
+    <!-- GEOTECH -->
     <div class="timeline-item reveal">
       <div class="timeline-date">AUG 2023 — NOV 2023</div>
-      <div class="timeline-title">Machine Learning Intern — Applied Data Science</div>
+      <div class="timeline-title">Machine Learning Intern — Computer Vision & Geospatial AI</div>
       <div class="timeline-company">Geotech Geospatial Pvt. Ltd. · India</div>
-      <div class="timeline-desc">Analysed large-scale geospatial datasets using Python and SQL to identify patterns and inefficiencies. Built and tuned predictive ML models achieving ~30% improvement over existing benchmarks. Produced visualisations and structured reports presenting findings to technical and non-technical stakeholders across cross-functional teams.</div>
+      <div class="timeline-desc">Analysed large-scale geospatial image datasets using Python and SQL to identify patterns and performance drivers. Built and tuned predictive ML pipelines achieving approximately 30% improvement over existing baselines. Produced structured reports and visualisations presenting findings to both technical and non-technical stakeholders.</div>
       <div class="timeline-tags">
-        <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Scikit-learn</span>
-        <span class="tag">Feature Engineering</span><span class="tag">Reporting</span>
+        <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Computer Vision</span>
+        <span class="tag">Scikit-learn</span><span class="tag">Feature Engineering</span><span class="tag">Reporting</span>
       </div>
     </div>
+
+    <!-- TEACHERACTIVE -->
+    <div class="timeline-item reveal">
+      <div class="timeline-date">SEP 2025 — PRESENT</div>
+      <div class="timeline-title">Learning Support Assistant & Exam Invigilator</div>
+      <div class="timeline-company">Teacheractive · Liverpool, UK</div>
+      <div class="timeline-desc">Works directly with children, parents, and school management across multiple Liverpool schools — maintaining structured records, supporting educators, and adapting communication to diverse audiences alongside full-time MSc study.</div>
+      <div class="timeline-tags">
+        <span class="tag">Communication</span><span class="tag">Record-Keeping</span><span class="tag">Stakeholder Management</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -873,107 +857,171 @@
   <div class="section-label">// 03 — Projects</div>
   <h2>Things I've <em>built</em></h2>
 
+  <div class="projects-filter">
+    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('analytics', this)">Data Analytics</button>
+    <button class="filter-btn" onclick="filterProjects('cv', this)">Computer Vision</button>
+    <button class="filter-btn" onclick="filterProjects('nlp', this)">NLP & LLMs</button>
+    <button class="filter-btn" onclick="filterProjects('ml', this)">ML & AI</button>
+    <button class="filter-btn" onclick="filterProjects('research', this)">Research</button>
+  </div>
+
   <div class="projects-grid">
 
-    <div class="project-card reveal">
+    <!-- ANALYTICS -->
+    <div class="project-card reveal" data-category="analytics">
+      <div class="project-icon">🏦</div>
+      <div class="project-title">Retail Banking Analytics Platform</div>
+      <div class="project-desc">End-to-end analytics data warehouse on Google BigQuery simulating a retail bank's analytics team — customer segmentation, transaction anomaly detection, product revenue tracking, and churn prediction. Multi-layer warehouse architecture (raw → staging → mart) with SQL schemas and analytical views.</div>
+      <div class="project-metric">// BigQuery · SQL · Data Warehouse · RFM · Churn Modelling</div>
+      <div class="timeline-tags">
+        <span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Segmentation</span><span class="tag">Anomaly Detection</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="analytics">
+      <div class="project-icon">📊</div>
+      <div class="project-title">E-Commerce Sales & Customer Segmentation Dashboard</div>
+      <div class="project-desc">Interactive 5-page Power BI dashboard analysing 500,000+ e-commerce transactions — revenue trends, customer behaviour, product performance, and geographic sales distribution. Built with DAX measures for KPIs including CLV, AOV, repeat purchase rate, and revenue growth.</div>
+      <div class="project-metric">// 500K+ Transactions · 5-Page Report · DAX KPIs</div>
+      <div class="timeline-tags">
+        <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">500K+ Rows</span><span class="tag">KPI Design</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="analytics">
+      <div class="project-icon">🔎</div>
+      <div class="project-title">Exploratory Data Analysis — End-to-End EDA Workflow</div>
+      <div class="project-desc">Complete EDA workflow on a real-world dataset: data profiling, missing value analysis, distribution analysis, outlier detection, correlation analysis, and feature relationship visualisation. Applied hypothesis testing and significance testing for statistically grounded conclusions.</div>
+      <div class="project-metric">// Python · Pandas · Matplotlib · Statistical Testing</div>
+      <div class="timeline-tags">
+        <span class="tag">EDA</span><span class="tag">Pandas</span><span class="tag">Statistics</span><span class="tag">Seaborn</span>
+      </div>
+    </div>
+
+    <!-- NLP -->
+    <div class="project-card reveal" data-category="nlp">
+      <div class="project-icon">📧</div>
+      <div class="project-title">Employee Email Sentiment & Flight Risk NLP Pipeline</div>
+      <div class="project-desc">Complete NLP pipeline for employee email sentiment analysis — text cleaning, tokenisation, sentiment scoring, and trend analysis. Predictive model to flag flight-risk employees based on sentiment trajectory and communication pattern features. Combines NLP signals with structured HR data.</div>
+      <div class="project-metric">// Python · NLP · Sentiment Analysis · Predictive Modelling</div>
+      <div class="timeline-tags">
+        <span class="tag">NLP</span><span class="tag">Sentiment Analysis</span><span class="tag">Python</span><span class="tag">HR Analytics</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="nlp">
       <div class="project-icon">💬</div>
       <div class="project-title">Multilingual NLP — Language Detection & Summarisation</div>
-      <div class="project-desc">Transformer-based pipeline (BERT, mBART, Hugging Face) for automated multilingual language detection and abstractive text summarisation. Designed as a modular, API-ready ML service.</div>
+      <div class="project-desc">Transformer-based pipeline (BERT, mBART, Hugging Face) for automated multilingual language detection and abstractive text summarisation. Designed as a modular, API-ready ML microservice with clean separation of ingestion, inference, and output layers.</div>
+      <div class="project-metric">// API-Ready · Modular · Production-Ready Service</div>
       <div class="timeline-tags">
-        <span class="tag">BERT</span><span class="tag">mBART</span><span class="tag">HuggingFace</span><span class="tag">NLP</span>
+        <span class="tag">BERT</span><span class="tag">mBART</span><span class="tag">HuggingFace</span><span class="tag">REST API</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-icon">🔬</div>
-      <div class="project-title">Real-Time Food Inspection — Mask R-CNN</div>
-      <div class="project-desc">Real-time food defect detection system using Mask R-CNN with multi-label classification. Optimised for low-latency inference and production deployment on image streams.</div>
+    <!-- ML -->
+    <div class="project-card reveal" data-category="ml">
+      <div class="project-icon">🦋</div>
+      <div class="project-title">Thyroid Disease Prediction with Explainable AI</div>
+      <div class="project-desc">Comparative ML study using Random Forest and SVM for thyroid disease prediction from clinical features (TSH, T3, T4, age, gender). Integrated LIME for patient-level prediction explanations — making model decisions interpretable for clinical stakeholders.</div>
+      <div class="project-metric">// RF: 100% · SVM: 93.81% · LIME Explainability</div>
       <div class="timeline-tags">
-        <span class="tag">Mask R-CNN</span><span class="tag">Computer Vision</span><span class="tag">Real-Time</span>
+        <span class="tag">Random Forest</span><span class="tag">SVM</span><span class="tag">LIME</span><span class="tag">XAI</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
+    <div class="project-card reveal" data-category="ml">
+      <div class="project-icon">🌿</div>
+      <div class="project-title">Air Quality Monthly Analysis — RF, K-Means & CNN</div>
+      <div class="project-desc">Applied Random Forest for pollutant prediction, K-Means clustering for pollution pattern archetypes across monitoring stations, and CNNs for spatial pattern recognition. Built reproducible data pipelines with full methodology documentation for public replication.</div>
+      <div class="project-metric">// Accuracy: 99.64% · Monthly Time Series</div>
+      <div class="timeline-tags">
+        <span class="tag">Random Forest</span><span class="tag">K-Means</span><span class="tag">CNN</span><span class="tag">Time Series</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="ml">
+      <div class="project-icon">🎮</div>
+      <div class="project-title">Rainbow DQN — Full Implementation from Research Paper</div>
+      <div class="project-desc">Implemented complete Rainbow DQN architecture (Hessel et al. 2017) from scratch in PyTorch: Double DQN, Dueling Networks, Prioritised Experience Replay, Multi-step Returns (n=3), Noisy Networks, and Distributional RL (C51). Solved LunarLander-v3 on CUDA GPU.</div>
+      <div class="project-metric">// Episode 1,150 · Mean Reward ~211 · CUDA GPU</div>
+      <div class="timeline-tags">
+        <span class="tag">PyTorch</span><span class="tag">RL</span><span class="tag">DQN</span><span class="tag">CUDA</span>
+      </div>
+    </div>
+
+    <!-- CV -->
+    <div class="project-card reveal" data-category="cv">
+      <div class="project-icon">🤖</div>
+      <div class="project-title">AI-Chemist — Autonomous Multimodal AI Agent</div>
+      <div class="project-desc">Designed and deployed a fully autonomous AI agent in a live chemistry laboratory — YOLO object detection, VLM quality monitor, DigitalTwin state tracking, real-time colour analysis, StreamServer, and live web dashboard running on a UR robot arm.</div>
+      <div class="project-metric">// Live Deployed · Multimodal · Autonomous</div>
+      <div class="timeline-tags">
+        <span class="tag">YOLO</span><span class="tag">VLM</span><span class="tag">DigitalTwin</span><span class="tag">Agentic AI</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-category="cv">
       <div class="project-icon">🧬</div>
-      <div class="project-title">ASD Diagnosis — EyeAutiNet</div>
-      <div class="project-desc">Deep learning model (EyeAutiNet) for Autism Spectrum Disorder diagnosis from eye gaze behavioural data. Focused on clinical correctness and improving early detection accuracy.</div>
-      <div class="project-metric">Domain: Clinical AI · Behavioural</div>
+      <div class="project-title">EyeAutiNet — ASD Diagnosis from Eye Gaze Patterns</div>
+      <div class="project-desc">Novel deep learning model for Autism Spectrum Disorder diagnosis from eye gaze behavioural data — analysing temporal and spatial gaze sequences to classify ASD-characteristic fixation and saccade profiles. Focused on clinical correctness and minimising misclassification in both directions.</div>
+      <div class="project-metric">// Gaze Estimation · Clinical AI · Novel Architecture</div>
       <div class="timeline-tags">
-        <span class="tag">Deep Learning</span><span class="tag">Healthcare AI</span><span class="tag">Classification</span>
+        <span class="tag">Deep Learning</span><span class="tag">Gaze Estimation</span><span class="tag">Healthcare AI</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
+    <div class="project-card reveal" data-category="cv">
       <div class="project-icon">🛰️</div>
       <div class="project-title">Road Extraction from Satellite Imagery</div>
-      <div class="project-desc">Applied U-Net, D-LinkNet, and RISN for geospatial road segmentation. Achieved F1: 0.85 and IoU: 0.78 through systematic architecture comparison and hyperparameter tuning.</div>
+      <div class="project-desc">Applied U-Net, D-LinkNet, and RISN for geospatial road segmentation — systematic architecture comparison across spatial feature extraction and boundary detection with structured benchmarking documentation.</div>
       <div class="project-metric">// F1: 0.85 · IoU: 0.78</div>
       <div class="timeline-tags">
-        <span class="tag">U-Net</span><span class="tag">Segmentation</span><span class="tag">Geospatial</span>
+        <span class="tag">U-Net</span><span class="tag">D-LinkNet</span><span class="tag">Segmentation</span><span class="tag">Geospatial</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-icon">🌿</div>
-      <div class="project-title">Air Quality Prediction — Hybrid RF-CNN</div>
-      <div class="project-desc">Hybrid model combining Random Forest (statistical) and CNN (deep learning) architectures for air quality prediction. Achieved 99.64% accuracy across multiple environmental parameters.</div>
-      <div class="project-metric">// Accuracy: 99.64%</div>
+    <div class="project-card reveal" data-category="cv">
+      <div class="project-icon">🔬</div>
+      <div class="project-title">Real-Time Food Inspection — Mask R-CNN</div>
+      <div class="project-desc">Real-time food defect detection using Mask R-CNN with multi-label classification. Optimised for low-latency production inference on continuous image streams — balancing accuracy and speed for operational deployment.</div>
+      <div class="project-metric">// Real-Time · Low-Latency · Production</div>
       <div class="timeline-tags">
-        <span class="tag">Random Forest</span><span class="tag">CNN</span><span class="tag">Ensemble</span>
+        <span class="tag">Mask R-CNN</span><span class="tag">Real-Time</span><span class="tag">Multi-Label</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-icon">🩺</div>
-      <div class="project-title">Thyroid Disease Detection</div>
-      <div class="project-desc">Comparative diagnostic ML study using Random Forest (100% accuracy) and SVM (93.81% accuracy) for thyroid disease classification — demonstrating rigorous model evaluation and healthcare domain expertise.</div>
-      <div class="project-metric">// RF Accuracy: 100% · SVM: 93.81%</div>
-      <div class="timeline-tags">
-        <span class="tag">Random Forest</span><span class="tag">SVM</span><span class="tag">Healthcare</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-icon">🍎</div>
-      <div class="project-title">Fruit & Vegetable Recognition — CNN</div>
-      <div class="project-desc">Classified 50,000+ images using CNNs and transfer learning with 94.59% validation accuracy. Focused on efficient preprocessing, data augmentation, and large-scale dataset management.</div>
-      <div class="project-metric">// 50K+ Images · Accuracy: 94.59%</div>
-      <div class="timeline-tags">
-        <span class="tag">CNNs</span><span class="tag">Transfer Learning</span><span class="tag">Image Classification</span>
-      </div>
-    </div>
-    
-    <div class="project-card reveal">
+    <!-- RESEARCH -->
+    <div class="project-card reveal" data-category="research">
       <div class="project-icon">🌊</div>
       <div class="project-title">AquaVision Dehaze — Underwater Image Enhancement</div>
-      <div class="project-desc">Full reproducible image enhancement pipeline for underwater imagery. Published research achieving state-of-the-art PSNR and SSIM scores through systematic ablation and model comparison.</div>
+      <div class="project-desc">Full reproducible deep learning pipeline for underwater image dehazing and enhancement. Systematic ablation study validating each architectural decision; evaluated with PSNR, SSIM, F1, and AUC. Published at IET CVIoT 2024.</div>
       <div class="project-metric">// Published: IET CVIoT 2024</div>
       <div class="timeline-tags">
-        <span class="tag">Image Enhancement</span><span class="tag">CNNs</span><span class="tag">Published</span>
+        <span class="tag">Image Enhancement</span><span class="tag">PyTorch</span><span class="tag">Published</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-  <div class="project-icon">📊</div>
-  <div class="project-title">KLM vs ApproxMC Comparison Study</div>
-  <div class="project-desc">Conducting a comparative analysis of KLM and ApproxMC algorithms for probabilistic counting and model estimation. Focused on evaluating accuracy, scalability, and computational efficiency across varying datasets and constraints as part of an ongoing group research project.</div>
-  <div class="project-metric">// Ongoing · Group Project · Performance Analysis</div>
-  <div class="timeline-tags">
-    <span class="tag">Algorithms</span><span class="tag">Approximation Techniques</span><span class="tag">Performance Evaluation</span>
-  </div>
-</div>
-    
+    <div class="project-card reveal" data-category="research">
+      <div class="project-icon">🦟</div>
+      <div class="project-title">AI for Mosquito-Borne Disease Surveillance</div>
+      <div class="project-desc">MSc dissertation (May 2026 onwards) — developing an AI-driven system to monitor and predict mosquito-borne disease patterns using data analytics and predictive modelling. Aims to enable early outbreak detection and improved public health response through intelligent surveillance.</div>
+      <div class="project-metric">// Dissertation · In Progress · AI for Public Health</div>
+      <div class="timeline-tags">
+        <span class="tag">ML</span><span class="tag">Public Health</span><span class="tag">Predictive Modelling</span><span class="tag">Dissertation</span>
+      </div>
+    </div>
 
-    <div class="project-card reveal">
-  <div class="project-icon">🦟</div>
-  <div class="project-title">Bridging AI & Monitoring of Mosquito-Borne Diseases</div>
-  <div class="project-desc">This dissertation project (starting May 2026) focuses on developing an AI-driven system to monitor and analyze mosquito-borne disease patterns using data analytics and predictive modeling. Aims to enable early detection, outbreak forecasting, and improved public health response through intelligent surveillance techniques.</div>
-  <div class="project-metric">// Dissertation · Starts May 2026 · AI for Healthcare</div>
-  <div class="timeline-tags">
-    <span class="tag">Machine Learning</span><span class="tag">Public Health</span><span class="tag">Predictive Modeling</span>
-  </div>
-</div>
-    
+    <div class="project-card reveal" data-category="research">
+      <div class="project-icon">📐</div>
+      <div class="project-title">KLM vs ApproxMC Algorithm Comparison</div>
+      <div class="project-desc">Comparative analysis of KLM and ApproxMC algorithms for probabilistic model counting — evaluating accuracy, scalability, and computational efficiency across varying dataset sizes and constraint complexity. Group research project, University of Liverpool.</div>
+      <div class="project-metric">// Probabilistic Counting · Performance Benchmarking</div>
+      <div class="timeline-tags">
+        <span class="tag">Algorithms</span><span class="tag">Approximation</span><span class="tag">Benchmarking</span>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -994,7 +1042,6 @@
         <div class="pub-doi">DOI: 10.2174/0115701638405489251006073137</div>
       </div>
     </div>
-
     <div class="pub-card reveal">
       <div class="pub-num">02</div>
       <div>
@@ -1003,7 +1050,6 @@
         <div class="pub-doi">DOI: 10.1049/icp.2024.4411</div>
       </div>
     </div>
-
     <div class="pub-card reveal">
       <div class="pub-num">03</div>
       <div>
@@ -1012,7 +1058,6 @@
         <div class="pub-doi">DOI: 10.1007/978-3-031-93691-3_25</div>
       </div>
     </div>
-
     <div class="pub-card reveal">
       <div class="pub-num">04</div>
       <div>
@@ -1024,7 +1069,6 @@
   </div>
 
   <h2 style="margin-top:3.5rem">Filed <em>Patents</em></h2>
-
   <div class="patents-grid">
     <div class="patent-card reveal">
       <div class="patent-title">System for Health Monitoring and Security of an Infant</div>
@@ -1069,7 +1113,7 @@
       <div class="skill-chips">
         <span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Scikit-learn</span>
         <span class="chip">CNNs</span><span class="chip">EfficientNet</span><span class="chip">YOLOv8/v9</span>
-        <span class="chip">U-Net</span><span class="chip">Mask R-CNN</span>
+        <span class="chip">U-Net</span><span class="chip">Mask R-CNN</span><span class="chip">Rainbow DQN</span>
       </div>
     </div>
 
@@ -1077,25 +1121,35 @@
       <div class="skill-group-title">NLP & LLMs</div>
       <div class="skill-chips">
         <span class="chip">Hugging Face</span><span class="chip">BERT</span><span class="chip">mBART</span>
-        <span class="chip">Transformers</span><span class="chip">Summarisation</span><span class="chip">SHAP</span>
+        <span class="chip">Transformers</span><span class="chip">Prompt Engineering</span>
+        <span class="chip">Sentiment Analysis</span><span class="chip">SHAP</span>
       </div>
     </div>
 
     <div class="skill-group reveal">
-      <div class="skill-group-title">ML Methods</div>
+      <div class="skill-group-title">Data Analytics & BI</div>
       <div class="skill-chips">
-        <span class="chip">Feature Engineering</span><span class="chip">Cross-Validation</span>
-        <span class="chip">Ablation Studies</span><span class="chip">Hyperparameter Tuning</span>
-        <span class="chip">Model Evaluation</span>
+        <span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">BigQuery</span>
+        <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">EDA</span>
+        <span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
       </div>
     </div>
 
     <div class="skill-group reveal">
-      <div class="skill-group-title">Tools & Infra</div>
+      <div class="skill-group-title">Explainability & Evaluation</div>
+      <div class="skill-chips">
+        <span class="chip">SHAP</span><span class="chip">LIME</span><span class="chip">Ablation Studies</span>
+        <span class="chip">F1 / AUC / PSNR / SSIM</span><span class="chip">Significance Testing</span>
+        <span class="chip">Cross-Validation</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Tools & Infrastructure</div>
       <div class="skill-chips">
         <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Jupyter</span>
-        <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">OpenCV</span>
-        <span class="chip">LaTeX</span>
+        <span class="chip">CUDA/GPU</span><span class="chip">REST APIs</span><span class="chip">LaTeX</span>
+        <span class="chip">Excel</span><span class="chip">Azure AI</span>
       </div>
     </div>
 
@@ -1104,7 +1158,17 @@
       <div class="skill-chips">
         <span class="chip">Healthcare AI</span><span class="chip">Biomedical ML</span>
         <span class="chip">Computer Vision</span><span class="chip">Geospatial AI</span>
-        <span class="chip">Drug Discovery</span><span class="chip">NLP</span>
+        <span class="chip">Banking Analytics</span><span class="chip">E-Commerce</span>
+        <span class="chip">Environmental AI</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Agentic & Advanced AI</div>
+      <div class="skill-chips">
+        <span class="chip">VLMs</span><span class="chip">DigitalTwin</span>
+        <span class="chip">Federated Learning</span><span class="chip">MARL</span>
+        <span class="chip">RAG Concepts</span><span class="chip">Agentic Workflows</span>
       </div>
     </div>
   </div>
@@ -1119,7 +1183,7 @@
 
   <div class="contact-card reveal">
     <p style="color: var(--off); font-size: 1.05rem; font-weight: 300; position:relative;">
-      I am currently open to <strong style="color:var(--white)">AI/ML internships</strong>, <strong style="color:var(--white)">data analyst roles</strong>, <strong style="color:var(--white)">AI evaluation contracts</strong>, and <strong style="color:var(--white)">research collaborations</strong> — remote or hybrid across the UK.
+      Currently open to <strong style="color:var(--white)">AI/ML engineering roles</strong>, <strong style="color:var(--white)">data analyst positions</strong>, <strong style="color:var(--white)">graduate programmes</strong>, and <strong style="color:var(--white)">research collaborations</strong> — remote or hybrid across the UK.
     </p>
     <div class="contact-links">
       <a href="mailto:spoorthijsuk@gmail.com" class="contact-link">✉ spoorthijsuk@gmail.com</a>
@@ -1132,7 +1196,7 @@
 
 <footer>
   <p>Spoorthi Jolakula Suresh · MSc Advanced Data Science & AI · University of Liverpool · 2026</p>
-  <p style="margin-top:0.4rem; font-size:0.75rem;">UK Student Visa — Graduate Route Eligible</p>
+  <p style="margin-top:0.4rem; font-size:0.75rem;">UK Student Visa — Graduate Route from 30 January 2026</p>
 </footer>
 
 <script>
@@ -1154,17 +1218,26 @@
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 120) {
-        current = sec.getAttribute('id');
-      }
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
     });
     navLinks.forEach(link => {
       link.style.color = '';
-      if (link.getAttribute('href') === '#' + current) {
-        link.style.color = 'var(--accent)';
-      }
+      if (link.getAttribute('href') === '#' + current) link.style.color = 'var(--accent)';
     });
   });
+
+  // Project filter
+  function filterProjects(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
 </script>
 </body>
 </html>
